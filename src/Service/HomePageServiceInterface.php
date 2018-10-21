@@ -9,7 +9,7 @@ use App\Model\HomePage;
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-interface HomePageServiceInterface
+interface HomePageServiceInterface extends PageServiceInterface
 {
     /**
      * Gets home page data.

@@ -2,3 +2,8 @@ index:
     path: /
     controller: App\Controller\DefaultController::index
     methods: [GET]
+
+contacts:
+    path: /contacts
+    controller: App\Controller\DefaultController::contacts
+    methods: [GET]
