@@ -7,3 +7,6 @@ contacts:
     path: /contacts
     controller: App\Controller\DefaultController::contacts
     methods: [GET]
+
+greeflas_newsletter:
+    resource: '@GreeflasNewsletterBundle/Resources/config/routes.yaml'

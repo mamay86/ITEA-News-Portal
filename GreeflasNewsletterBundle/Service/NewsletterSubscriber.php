@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Service;
+namespace Greeflas\Bundle\NewsletterBundle\Service;
 
 use Greeflas\Bundle\NewsletterBundle\Dto\Subscriber;
-use Greeflas\Bundle\NewsletterBundle\Service\NewsletterSubscriberInterface;
 
 final class NewsletterSubscriber implements NewsletterSubscriberInterface
 {
