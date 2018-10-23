@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Service\ContactsPageServiceInterface;
 use App\Service\HomePageServiceInterface;
+use App\Service\MessageRecievedMailer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -35,8 +36,10 @@ class DefaultController extends AbstractController
      *
      * @return Response
      */
-    public function contacts(ContactsPageServiceInterface $service): Response
+    public function contacts(ContactsPageServiceInterface $service, MessageRecievedMailer $mailer): Response
     {
+        $mailer->send('vldmr.kuprienko@gmail.com');
+
         return $this->render('default/contacts.html.twig', [
             'page' => $service->getData(),
         ]);

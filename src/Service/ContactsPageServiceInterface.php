@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Model\ContactsPage;
+use App\Dto\ContactsPage;
 
 /**
  * Contract for contacts page.
