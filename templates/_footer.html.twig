@@ -1,8 +1,11 @@
 <footer class="text-muted">
     <div class="container">
-        <p class="float-right">
-            <a href="#">Back to top</a>
-        </p>
+        <form class="form-inline float-right" action="{{ path('newsletter_subscribe') }}" method="post">
+            <div class="form-group">
+                <input type="text" name="email" class="form-control" placeholder="E-mail">
+            </div>
+            <button type="submit" class="btn btn-success ml-2">Subscribe</button>
+        </form>
         <p>News Portal &copy; 2018 All rights reserved.</p>
     </div>
 </footer>

@@ -1,3 +1,6 @@
+parameters:
+  greeflas.storage_file_path: '%kernel.project_dir%/var/file_storage/subscribers.csv'
+
 services:
   _defaults:
     autowire: true
@@ -10,3 +13,8 @@ services:
 
   Greeflas\Bundle\NewsletterBundle\Controller\DefaultController:
     tags: ['controller.service_arguments']
+
+  Greeflas\Bundle\NewsletterBundle\Repository\CsvFileRepository:
+    class: Greeflas\Bundle\NewsletterBundle\Repository\CsvFileRepository
+    arguments:
+      - '%greeflas.storage_file_path%'

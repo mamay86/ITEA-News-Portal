@@ -3,11 +3,19 @@
 namespace Greeflas\Bundle\NewsletterBundle\Service;
 
 use Greeflas\Bundle\NewsletterBundle\Dto\Subscriber;
+use Greeflas\Bundle\NewsletterBundle\Repository\SubscriberRepositoryInterface;
 
 final class NewsletterSubscriber implements NewsletterSubscriberInterface
 {
-    public function save(Subscriber $subscriber)
+    private $repository;
+
+    public function __construct(SubscriberRepositoryInterface $repository)
     {
-        die(var_dump($subscriber->getEmail()));
+        $this->repository = $repository;
+    }
+
+    public function save(Subscriber $subscriber): void
+    {
+        $this->repository->save($subscriber);
     }
 }
