@@ -26,6 +26,8 @@ class DefaultController extends AbstractController
     {
         return $this->render('default/index.html.twig', [
             'page' => $service->getData(),
+            'categories' => $service->getCategories(),
+            'latest_posts' => $service->getLatestPosts(),
         ]);
     }
 

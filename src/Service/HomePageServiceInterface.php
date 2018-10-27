@@ -17,4 +17,18 @@ interface HomePageServiceInterface extends PageServiceInterface
      * @return HomePage
      */
     public function getData(): HomePage;
+
+    /**
+     * Gets post categories.
+     *
+     * @return iterable
+     */
+    public function getCategories(): iterable;
+
+    /**
+     * Gets latest posts.
+     *
+     * @return iterable
+     */
+    public function getLatestPosts(): iterable;
 }

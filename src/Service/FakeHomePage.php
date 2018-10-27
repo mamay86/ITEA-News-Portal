@@ -25,4 +25,20 @@ final class FakeHomePage implements HomePageServiceInterface
             'Suggest news'
         );
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCategories(): iterable
+    {
+        return new \EmptyIterator();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLatestPosts(): iterable
+    {
+        return new \EmptyIterator();
+    }
 }
