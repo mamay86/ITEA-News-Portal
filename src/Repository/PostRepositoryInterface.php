@@ -33,4 +33,13 @@ interface PostRepositoryInterface
      * @return iterable
      */
     public function getLatest(int $count): iterable;
+
+    /**
+     * Find one post by ID.
+     *
+     * @param int $id
+     *
+     * @return null|Post
+     */
+    public function findOne(int $id): ?Post;
 }
