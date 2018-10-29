@@ -25,7 +25,9 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
      */
     public function save(Post $post): void
     {
-        // TODO: Implement save() method.
+        $em = $this->getEntityManager();
+        $em->persist($post);
+        $em->flush();
     }
 
     /**
@@ -68,5 +70,17 @@ class PostRepository extends ServiceEntityRepository implements PostRepositoryIn
     public function findOne(int $id): ?Post
     {
         return $this->find($id);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function delete(int $id)
+    {
+        $post = $this->findOne($id);
+
+        $em = $this->getEntityManager();
+        $em->remove($post);
+        $em->flush();
     }
 }

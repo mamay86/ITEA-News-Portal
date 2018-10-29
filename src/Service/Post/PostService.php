@@ -11,9 +11,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  *
  * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
  */
-final class PostService implements PostServiceInterface
+class PostService implements PostServiceInterface
 {
-    private $postRepository;
+    protected $postRepository;
 
     public function __construct(PostRepositoryInterface $postRepository)
     {
@@ -23,7 +23,7 @@ final class PostService implements PostServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function findOne(int $id): Post
+    public function findOne(int $id)
     {
         $post =$this->postRepository->findOne($id);
 
@@ -32,5 +32,20 @@ final class PostService implements PostServiceInterface
         }
 
         return $post;
+    }
+
+    /**
+     * Creates new post.
+     *
+     * @param array $data
+     */
+    public function create(array $data)
+    {
+        // TODO: Implement create() method.
+    }
+
+    public function delete(int $id)
+    {
+        $this->postRepository->delete($id);
     }
 }

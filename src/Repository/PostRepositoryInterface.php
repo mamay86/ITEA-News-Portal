@@ -42,4 +42,11 @@ interface PostRepositoryInterface
      * @return null|Post
      */
     public function findOne(int $id): ?Post;
+
+    /**
+     * Deletes post.
+     *
+     * @param int $id
+     */
+    public function delete(int $id);
 }

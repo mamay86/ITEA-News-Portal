@@ -2,8 +2,6 @@
 
 namespace App\Service\Post;
 
-use App\Entity\Post;
-
 /**
  * Contract for post service.
  *
@@ -15,8 +13,20 @@ interface PostServiceInterface
      * Find one post by ID.
      *
      * @param int $id
-     *
-     * @return Post
      */
-    public function findOne(int $id): Post;
+    public function findOne(int $id);
+
+    /**
+     * Creates new post.
+     *
+     * @param array $data
+     */
+    public function create(array $data);
+
+    /**
+     * Deletes post.
+     *
+     * @param int $id
+     */
+    public function delete(int $id);
 }
