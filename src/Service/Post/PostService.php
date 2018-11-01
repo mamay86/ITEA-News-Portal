@@ -3,6 +3,7 @@
 namespace App\Service\Post;
 
 use App\Entity\Post;
+use App\Repository\CategoryRepositoryInterface;
 use App\Repository\PostRepositoryInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -13,10 +14,14 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class PostService implements PostServiceInterface
 {
-    protected $postRepository;
+    private $postRepository;
+    private $categoryRepository;
 
-    public function __construct(PostRepositoryInterface $postRepository)
-    {
+    public function __construct(
+        CategoryRepositoryInterface $categoryRepository,
+        PostRepositoryInterface $postRepository
+    ) {
+        $this->categoryRepository = $categoryRepository;
         $this->postRepository = $postRepository;
     }
 
@@ -25,7 +30,7 @@ class PostService implements PostServiceInterface
      */
     public function findOne(int $id)
     {
-        $post =$this->postRepository->findOne($id);
+        $post = $this->postRepository->findOne($id);
 
         if (null === $post) {
             throw new NotFoundHttpException(\sprintf('Post with ID %d not found', $id));
@@ -38,13 +43,24 @@ class PostService implements PostServiceInterface
      * Creates new post.
      *
      * @param array $data
+     *
+     * @return Post
      */
     public function create(array $data)
     {
-        // TODO: Implement create() method.
+        $category = $this->categoryRepository->findBySlug($data['category']);
+
+        $post = new Post();
+        $post->setCategory($category);
+        $post->setTitle($data['title']);
+        $post->setBody($data['content']);
+
+        $this->postRepository->save($post);
+
+        return $post;
     }
 
-    public function delete(int $id)
+    public function delete(int $id): void
     {
         $this->postRepository->delete($id);
     }
