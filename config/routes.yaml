@@ -29,5 +29,10 @@ admin_home:
     controller: App\Controller\Admin\DefaultController::index
     methods: [GET]
 
+post_create:
+    path: /admin/post/create
+    controller: App\Controller\Admin\PostController::create
+    methods: [GET]
+
 greeflas_newsletter:
     resource: '@GreeflasNewsletterBundle/Resources/config/routes.yaml'
