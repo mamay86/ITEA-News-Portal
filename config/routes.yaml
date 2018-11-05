@@ -13,5 +13,11 @@ post_view:
     controller: App\Controller\PostController::view
     methods: [GET]
 
+# Admin panel
+admin_home:
+    path: /admin
+    controller: App\Controller\Admin\DefaultController::index
+    methods: [GET]
+
 greeflas_newsletter:
     resource: '@GreeflasNewsletterBundle/Resources/config/routes.yaml'
