@@ -13,6 +13,16 @@ post_view:
     controller: App\Controller\PostController::view
     methods: [GET]
 
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+    methods: [GET, POST]
+
+logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+    methods: [GET]
+
 # Admin panel
 admin_home:
     path: /admin
