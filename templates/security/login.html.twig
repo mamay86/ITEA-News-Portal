@@ -1,7 +1,13 @@
 {% extends 'base.html.twig' %}
 
+{% block css %}
+    {{ parent() }}
+    <link href="/css/login.css" rel="stylesheet">
+{% endblock %}
+
 {% block main %}
-    <div class="col-md-6">
+<main class="login" role="main">
+    <div class="col-md-4 offset-md-1">
         <form action="{{ path('login') }}" method="post">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             <div class="form-group">
@@ -17,4 +23,5 @@
             </div>
         </form>
     </div>
+</main>
 {% endblock %}

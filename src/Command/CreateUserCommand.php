@@ -11,6 +11,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * Command for creating news users.
+ *
+ * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ */
 final class CreateUserCommand extends Command
 {
     private $passwordEncoder;
@@ -24,6 +29,9 @@ final class CreateUserCommand extends Command
         $this->userRepository = $userRepository;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function configure()
     {
         $this
@@ -35,6 +43,9 @@ final class CreateUserCommand extends Command
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->writeln('<info>Creating new user...</info>');

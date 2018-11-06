@@ -3,11 +3,24 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+/**
+ * Provides security layer to the application.
+ *
+ * @author Vladimir Kuprienko <vldmr.kuprienko@gmail.com>
+ */
 final class SecurityController extends AbstractController
 {
-    public function login(AuthenticationUtils $authenticationUtils)
+    /**
+     * Login page.
+     *
+     * @param AuthenticationUtils $authenticationUtils
+     *
+     * @return Response
+     */
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
         $lastUsername = $authenticationUtils->getLastUsername();
 
@@ -18,7 +31,10 @@ final class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', \compact('lastUsername'));
     }
 
-    public function logout()
+    /**
+     * Logout action.
+     */
+    public function logout(): void
     {
     }
 }
