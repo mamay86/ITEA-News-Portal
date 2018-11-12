@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Entity\Post;
+use App\Repository\CategoryRepositoryInterface;
 use App\Repository\PostRepositoryInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -16,13 +17,18 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 final class PostsGeneratorCommand extends Command
 {
-    private $repository;
+    private $categoryRepository;
+    private $postRepository;
 
-    public function __construct(PostRepositoryInterface $repository, string $name = null)
-    {
+    public function __construct(
+        CategoryRepositoryInterface $categoryRepository,
+        PostRepositoryInterface $postRepository,
+        string $name = null
+    ) {
         parent::__construct($name);
 
-        $this->repository = $repository;
+        $this->categoryRepository = $categoryRepository;
+        $this->postRepository = $postRepository;
     }
 
     /**
@@ -50,19 +56,20 @@ final class PostsGeneratorCommand extends Command
         $count = $input->getArgument('count');
         $faker = \Faker\Factory::create();
 
+        $categories = $this->categoryRepository->findAllCategories();
         $posts = [];
 
         for ($i = 0; $i < $count; $i++) {
             $post = new Post();
             $post
-                ->setCategoryId($faker->numberBetween(1, 3))
+                ->setCategory($categories[\array_rand($categories, 1)])
                 ->setTitle($faker->sentence)
                 ->setBody($faker->text)
             ;
             $posts[] = $post;
         }
 
-        $this->repository->saveAll($posts);
+        $this->postRepository->saveAll($posts);
 
         $output->writeln(\sprintf('%d posts were successfully created!', $count));
     }

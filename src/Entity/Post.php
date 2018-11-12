@@ -142,8 +142,10 @@ class Post implements EntityInterface
         return $this->category;
     }
 
-    public function setCategory(Category $category): void
+    public function setCategory(Category $category): self
     {
         $this->category = $category;
+
+        return $this;
     }
 }
