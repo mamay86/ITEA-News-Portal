@@ -1,4 +1,0 @@
-newsletter_subscribe:
-  path: /newsletter-subscribe
-  controller: Greeflas\Bundle\NewsletterBundle\Controller\DefaultController::subscribe
-  methods: [GET, POST]

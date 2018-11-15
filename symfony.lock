@@ -95,6 +95,9 @@
     "fzaninotto/faker": {
         "version": "v1.8.0"
     },
+    "greeflas/newsletter-bundle": {
+        "version": "dev-master"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
