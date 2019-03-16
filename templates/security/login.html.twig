@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block css %}
+    {{ parent() }}
+    <link href="/css/login.css" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+<main class="login" role="main">
+    <div class="col-md-4 offset-md-1">
+        <form action="{{ path('login') }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <div class="form-group">
+                <label for="username" class="control-label">Username</label>
+                <input type="text" id="username" class="form-control" name="_username" value="{{ lastUsername }}" autofocus>
+            </div>
+            <div class="form-group">
+                <label for="password" class="control-label">Password</label>
+                <input type="password" id="password" class="form-control" name="_password">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Login</button>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}

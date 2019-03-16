@@ -1,21 +1,38 @@
 parameters:
-    # Adds a fallback DATABASE_URL if the env var is not set.
-    # This allows you to run cache:warmup even if your
-    # environment variables are not available yet.
-    # You should not need to change this value.
-    env(DATABASE_URL): ''
+    env(DB_MASTER_HOST): '127.0.0.1'
+    env(DB_MASTER_PORT): ''
+    env(DB_MASTER_USERNAME): ''
+    env(DB_MASTER_PASSWORD): ''
+    env(DB_MASTER_NAME): 'news_portal'
+
+    env(DB_SLAVE1_HOST): '127.0.0.1'
+    env(DB_SLAVE1_PORT): ''
+    env(DB_SLAVE1_USERNAME): ''
+    env(DB_SLAVE1_PASSWORD): ''
+    env(DB_SLAVE1_NAME): 'news_portal'
 
 doctrine:
     dbal:
         # configure these for your database server
-        driver: 'pdo_mysql'
+        driver:         'pdo_mysql'
+        host:           '%env(resolve:DB_MASTER_HOST)%'
+        port:           '%env(resolve:DB_MASTER_PORT)%'
+        user:           '%env(resolve:DB_MASTER_USERNAME)%'
+        password:       '%env(resolve:DB_MASTER_PASSWORD)%'
+        dbname:         '%env(resolve:DB_MASTER_NAME)%'
         server_version: '5.7'
         charset: utf8mb4
         default_table_options:
             charset: utf8mb4
             collate: utf8mb4_unicode_ci
 
-        url: '%env(resolve:DATABASE_URL)%'
+        slaves:
+            slave1:
+                host:       '%env(resolve:DB_SLAVE1_HOST)%'
+                port:       '%env(resolve:DB_SLAVE1_PORT)%'
+                user:       '%env(resolve:DB_SLAVE1_USERNAME)%'
+                password:   '%env(resolve:DB_SLAVE1_PASSWORD)%'
+                dbname:     '%env(resolve:DB_SLAVE1_NAME)%'
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore

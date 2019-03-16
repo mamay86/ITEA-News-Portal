@@ -2,3 +2,37 @@ index:
     path: /
     controller: App\Controller\DefaultController::index
     methods: [GET]
+
+contacts:
+    path: /contacts
+    controller: App\Controller\DefaultController::contacts
+    methods: [GET]
+
+post_view:
+    path: /post/view/{id}
+    controller: App\Controller\PostController::view
+    methods: [GET]
+
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+    methods: [GET, POST]
+
+logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+    methods: [GET]
+
+# Admin panel
+admin_home:
+    path: /admin
+    controller: App\Controller\Admin\DefaultController::index
+    methods: [GET]
+
+post_create:
+    path: /admin/post/create
+    controller: App\Controller\Admin\PostController::create
+    methods: [GET]
+
+greeflas_newsletter:
+    resource: '@GreeflasNewsletterBundle/Resources/config/routes.yaml'

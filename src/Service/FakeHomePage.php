@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Model\HomePage;
+use App\Dto\HomePage;
 
 /**
  * Service provides fake data for home page.
@@ -24,5 +24,21 @@ final class FakeHomePage implements HomePageServiceInterface
             'Read News',
             'Suggest news'
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCategories(): iterable
+    {
+        return new \EmptyIterator();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLatestPosts(): iterable
+    {
+        return new \EmptyIterator();
     }
 }
